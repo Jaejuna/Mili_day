@@ -1,10 +1,13 @@
 from flask import Flask, request, render_template
+from datetime import datetime
 
 app = Flask(__name__) 
 
 @app.route('/') 
 def hello(): 
-    return 'Hello, World!' 
+    now = datetime.now() # current date and time
+    date_time = now.strftime("%d/%m/%Y, %H:%M:%S")
+    return render_template('index.html', date_time=date_time)
 
 @app.route('/hello') 
 def hellohtml(): 
