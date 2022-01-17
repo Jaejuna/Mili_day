@@ -1,12 +1,11 @@
 import {useState, useEffect} from "react";
-import ClockContainer from "./components/ClockContainer";
+import Main from "./routes/Main";
 
 function App(){
 	
-	
 return(
 	<div>
-		<h1>어제의 내일은 오늘이다.</h1>
+		<Main />
 	</div>
 	);
 }
