@@ -1,4 +1,5 @@
 import {useState, useEffect } from 'react';
+import {dbService} from "firebase"
 
 function ClockContainer() {
   const [time, setTime] = useState(new Date());
@@ -11,21 +12,19 @@ function ClockContainer() {
   const onChange = (event) => {
       const {target: {name, value}} = event;
       if (name === "name"){
-        setName(value);
+        setName(name);
       } else if (name === "date"){
         setDate(value);
 			}
 		};
 	
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
-    if (name === "") {
-      return;
-    }
-    setNames((currentArray) => [name, ...currentArray]);
-    setName("");
-		setDates((currentArray) => [date, ...currentArray]);
-    setDate("");
+		await dbSerivce.colletion("names").add({
+		name,
+			createdAt: Date.now(),
+		})
+		setName("");
 	};
 	
   useEffect(() => {
